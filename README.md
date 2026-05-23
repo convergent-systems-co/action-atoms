@@ -118,4 +118,7 @@ new versions; users opt in.
 
 ## License
 
-AGPL-3.0. See [`LICENSE`](./LICENSE).
+This catalog is dual-licensed per the `*-atoms` ecosystem convention:
+
+- **Code:** Apache-2.0 — see [`LICENSE`](./LICENSE).
+- **Data / catalog content:** CC-BY-4.0 — see [`LICENSE-data`](./LICENSE-data).
