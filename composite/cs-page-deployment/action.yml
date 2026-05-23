@@ -1,0 +1,61 @@
+name: 'Convergent Systems — Pages Deployment'
+description: 'Build a Node / Astro site and deploy it to Cloudflare Pages via wrangler. Composite action; see https://action-atoms.com/github/composite/cs-page-deployment@1.0.0.'
+author: 'Convergent Systems'
+
+inputs:
+  site-dir:
+    description: 'Path (relative to repo root) of the site directory containing package.json.'
+    required: true
+  project-name:
+    description: 'Cloudflare Pages project name (created by terraform; see SPEC.md §7.11).'
+    required: true
+  branch:
+    description: 'Branch label for the deploy. "main" marks the deploy as production; anything else creates a preview URL.'
+    required: false
+    default: 'main'
+  node-version:
+    description: 'Node version. Astro 6 requires >= 22.12.'
+    required: false
+    default: '22'
+
+# Required env on the caller workflow:
+#   CLOUDFLARE_API_TOKEN  — scoped Account → Cloudflare Pages → Edit
+#   CLOUDFLARE_ACCOUNT_ID — the Convergent Systems CF account id
+
+runs:
+  using: composite
+
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: npm
+        cache-dependency-path: ${{ inputs.site-dir }}/package-lock.json
+
+    - name: Install dependencies
+      shell: bash
+      working-directory: ${{ inputs.site-dir }}
+      run: npm ci
+
+    - name: Build site
+      shell: bash
+      working-directory: ${{ inputs.site-dir }}
+      run: npm run build
+
+    - name: Deploy to Cloudflare Pages
+      shell: bash
+      working-directory: ${{ inputs.site-dir }}
+      env:
+        # Pull inputs into env vars per
+        # https://github.blog/security/vulnerability-research/how-to-catch-github-actions-workflow-injections-before-attackers-do/
+        BRANCH: ${{ inputs.branch }}
+        PROJECT: ${{ inputs.project-name }}
+      run: |
+        npx wrangler@4 pages deploy dist \
+          --project-name="$PROJECT" \
+          --branch="$BRANCH"
+
+branding:
+  icon: upload-cloud
+  color: blue
