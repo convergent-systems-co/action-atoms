@@ -1,0 +1,27 @@
+id: "cs-page-deployment"
+type: "github"
+version: "1.0.0"
+name: "Convergent Systems — Pages Deployment"
+description: "Build a Node/Astro site and deploy it to Cloudflare Pages via wrangler."
+subtype: "composite"
+canonical_url: "https://action-atoms.com/github/composite/cs-page-deployment@1.0.0"
+gha_uses: "convergent-systems-co/action-atoms/composite/cs-page-deployment@v1.0.0"
+inputs:
+  - name: "site-dir"
+    description: "Path (relative to repo root) of the site directory containing package.json."
+    required: true
+  - name: "project-name"
+    description: "Cloudflare Pages project name (created by terraform)."
+    required: true
+  - name: "branch"
+    description: "Branch label for the deploy. main marks production; anything else creates a preview URL."
+    required: false
+    default: "main"
+  - name: "node-version"
+    description: "Node version. Astro 6 requires >= 22.12."
+    required: false
+    default: "22"
+provenance:
+  source: "composite/cs-page-deployment/action.yml"
+  addedBy: "convergent-systems-co"
+  addedAt: "2026-05-25T00:00:00Z"
