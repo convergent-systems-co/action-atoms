@@ -1,31 +1,25 @@
 # ATOMS.yml — catalog manifest for action-atoms
+#
+# Conforms to: https://schema-atoms.com/
+# spec_version: atoms-spec/v1.1.0
 
+spec_version: atoms-spec/v1.1.0
 name: action-atoms
 version: 0.1.0
-spec: atoms-spec/v1
-domain: action-atoms.com
-ecosystem:
-  federation: xdao.co
-  redirect: action.xdao.co
-
-purpose: |
+canonical_domain: action-atoms.com
+federation: convergent-systems.co
+description: |
   Atomic CI actions catalog — one step worth of work. Composite, JS, and Docker
   GitHub Actions sub-namespaced by platform + primitive type.
-
-atomTypes:
+atom_types:
   - github
-
-compositionType: actions
-compositionDir: composite
-
-ruleTypes:
-  - platform-compatibility
-  - version-constraint
-
-runtimeConsumers:
+composition_type: actions
+composition_dir: composite
+runtime_consumers:
   - olympus
-
-license: Apache-2.0
-maintainers:
-  - name: Convergent Systems
-    contact: maintainers@xdao.co
+lifecycle:
+  current: draft
+licensing:
+  code: Apache-2.0
+steward: convergent-systems-co
+infrastructure_operator: convergent-systems-co
