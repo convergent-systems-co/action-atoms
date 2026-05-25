@@ -1,0 +1,114 @@
+---
+import catalog from "../../public/exports/catalog.json";
+const title = "action-atoms";
+const tagline = "Atomic CI actions — one step's worth of work. Composite, JS, and Docker GitHub Actions.";
+const counts = { atoms: catalog.atoms.length, compositions: catalog.compositions.length, rules: catalog.rules.length };
+const byType: Record<string, number> = {};
+for (const a of catalog.atoms) byType[a.type] = (byType[a.type] ?? 0) + 1;
+const githubAtoms = catalog.atoms.filter((a: any) => a.type === "github") as any[];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={tagline} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="https://brand-atoms.com/dist/brands/atom-family/1.0.0/assets/favicon.svg" />
+    <link rel="preconnect" href="https://brand-atoms.com" />
+    <link rel="stylesheet" href="https://brand-atoms.com/dist/brands/atom-family/1.0.0/css/tokens.css" />
+    <link rel="stylesheet" href="https://brand-atoms.com/dist/brands/atom-family/1.0.0/ui/atoms-catalog.css" />
+    <style>
+      body { min-height: 100vh; }
+      .hero-mark { width: 160px; height: 160px; margin-bottom: 20px; object-fit: contain; }
+      .sidenav-wordmark { width: 140px; object-fit: contain; display: block; }
+      .action-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: .875rem; }
+      .action-table th { text-align: left; font-size: .7rem; text-transform: uppercase; letter-spacing: .05em;
+        color: var(--muted); padding: .4rem .6rem; border-bottom: 1px solid var(--border); }
+      .action-table td { padding: .55rem .6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      .action-table tr:hover td { background: var(--surface); }
+      .action-id { font-family: ui-monospace, monospace; font-weight: 600; }
+      .action-subtype { font-size: .72rem; color: var(--muted); }
+      .canonical { font-family: ui-monospace, monospace; font-size: .72rem; color: var(--accent); word-break: break-all; }
+      .gha-snippet { background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+        padding: .5rem .75rem; font-family: ui-monospace, monospace; font-size: .72rem; margin-top: .25rem; white-space: pre; }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <main class="content">
+        <section class="hero">
+          <img src="https://brand-atoms.com/dist/brands/atom-family/1.0.0/assets/atom-family-icon.png" alt="atom-family" class="hero-mark" />
+          <h1>{title}</h1>
+          <p class="lede">{tagline}</p>
+        </section>
+
+        <p style="font-size: 1.125rem; color: var(--muted); max-width: 40rem;">
+          A typed, versioned, composable library of CI action primitives — one step's worth of work, defined once and reused across every pipeline. Platform-prefixed: <code>github/</code> for GitHub Actions, with JS and Docker subtypes to follow.
+        </p>
+
+        <h2>Catalog at v{catalog.version}</h2>
+        <ul>
+          <li><strong>{counts.atoms}</strong> action atom{counts.atoms !== 1 ? 's' : ''} across {Object.keys(byType).length} platform{Object.keys(byType).length !== 1 ? 's' : ''}</li>
+          <li><strong>{counts.compositions}</strong> action compositions</li>
+          <li><strong>{counts.rules}</strong> compatibility rules</li>
+        </ul>
+
+        {githubAtoms.length > 0 && (
+          <>
+            <h2>GitHub Actions</h2>
+            <table class="action-table">
+              <thead>
+                <tr><th>Action</th><th>Description</th><th>Canonical URL / GHA usage</th></tr>
+              </thead>
+              <tbody>
+                {githubAtoms.map((a: any) => (
+                  <tr>
+                    <td>
+                      <div class="action-id">{a.id}</div>
+                      <div class="action-subtype">{a.subtype}</div>
+                    </td>
+                    <td>{a.description}</td>
+                    <td>
+                      <div class="canonical">{a.canonical_url}</div>
+                      <div class="gha-snippet">uses: {a.gha_uses}</div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+
+        <h2>Atom types</h2>
+        <ul>
+          {Object.entries(byType).map(([type, n]) => (
+            <li><a href={`/atoms/?type=${type}`}>{type}</a> — {n} atom{n !== 1 ? 's' : ''}</li>
+          ))}
+        </ul>
+
+        <h2>Civilization-grade properties</h2>
+        <ul>
+          <li><strong>Typed</strong> — every atom validates against a JSON Schema.</li>
+          <li><strong>Versioned</strong> — every atom has a semver <code>version</code> field; consumers pin to a version, not HEAD.</li>
+          <li><strong>Machine-readable</strong> — <a href="/exports/catalog.json">/exports/catalog.json</a> is the canonical manifest.</li>
+          <li><strong>Composable</strong> — action compositions reference atoms by ID; references resolve in CI.</li>
+          <li><strong>Open</strong> — Apache-2.0 licensed.</li>
+          <li><strong>Durable</strong> — no external dependencies in the hot path.</li>
+        </ul>
+
+        <footer>
+          Part of the <a href="https://github.com/convergent-systems-co/atoms">atoms ecosystem</a>. Apache-2.0.
+        </footer>
+      </main>
+      <nav class="sidenav">
+        <a class="brand" href="/">
+          <img src="https://brand-atoms.com/dist/brands/atom-family/1.0.0/assets/atom-family-wordmark.png" alt="ATOMS" class="sidenav-wordmark" />
+        </a>
+        <div class="aside-meta">
+          <a class="meta-link" href="https://github.com/convergent-systems-co/action-atoms">github ↗</a>
+        </div>
+      </nav>
+    </div>
+  </body>
+</html>
