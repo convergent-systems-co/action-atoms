@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://action-atoms.com/schemas/composition-v1.json",
+  "type": "object",
+  "required": ["schema", "type", "id", "version", "name", "steps"],
+  "properties": {
+    "schema": {"type": "string"},
+    "type": {"type": "string", "const": "composite"},
+    "id": {"type": "string"},
+    "version": {"type": "string"},
+    "name": {"type": "string"},
+    "description": {"type": "string"},
+    "steps": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Ordered list of action-atoms IDs"
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": false
+}

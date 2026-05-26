@@ -1,0 +1,13 @@
+{
+  "schema": "https://action-atoms.com/schemas/atom-v1.json",
+  "type": "github",
+  "id": "action-atoms/github/trufflesecurity-trufflehog-v3",
+  "version": "1.0.0",
+  "name": "trufflesecurity/trufflehog@v3.95.3",
+  "description": "Secret scanning using TruffleHog. Detects leaked credentials in git history.",
+  "action_ref": "trufflesecurity/trufflehog@v3.95.3",
+  "inputs": {
+    "extra_args": "--only-verified"
+  },
+  "tags": ["security", "secrets", "scanning", "ci"]
+}

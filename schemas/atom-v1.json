@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://action-atoms.com/schemas/atom-v1.json",
+  "type": "object",
+  "required": ["schema", "type", "id", "version", "name", "action_ref"],
+  "properties": {
+    "schema": {"type": "string"},
+    "type": {"type": "string", "const": "github"},
+    "id": {"type": "string"},
+    "version": {"type": "string"},
+    "name": {"type": "string"},
+    "description": {"type": "string"},
+    "action_ref": {
+      "type": "string",
+      "description": "GitHub Action reference, e.g. actions/checkout@v4"
+    },
+    "inputs": {
+      "type": "object",
+      "description": "Default input values"
+    },
+    "outputs": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": false
+}
