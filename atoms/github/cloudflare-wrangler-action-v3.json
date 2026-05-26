@@ -1,0 +1,11 @@
+{
+  "schema": "https://action-atoms.com/schemas/atom-v1.json",
+  "type": "github",
+  "id": "action-atoms/github/cloudflare-wrangler-action-v3",
+  "version": "1.0.0",
+  "name": "cloudflare/wrangler-action@v3",
+  "description": "Deploy to Cloudflare Pages via Wrangler. Used by all *-atoms deploy workflows.",
+  "action_ref": "cloudflare/wrangler-action@v3",
+  "inputs": {},
+  "tags": ["cloudflare", "pages", "deploy", "wrangler", "ci"]
+}

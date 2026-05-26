@@ -1,8 +1,99 @@
 {
   "catalog": "action-atoms",
   "version": "0.1.0",
-  "built_at": "2026-05-26T15:41:23+00:00",
-  "atoms": [],
+  "built_at": "2026-05-26T16:05:27+00:00",
+  "atoms": [
+    {
+      "schema": "https://action-atoms.com/schemas/atom-v1.json",
+      "type": "github",
+      "id": "action-atoms/github/actions-checkout-v4",
+      "version": "1.0.0",
+      "name": "actions/checkout@v4",
+      "description": "Check out a repository at a given SHA. Standard first step for all CI jobs.",
+      "action_ref": "actions/checkout@v4",
+      "inputs": {
+        "fetch-depth": 1
+      },
+      "tags": [
+        "checkout",
+        "git",
+        "ci",
+        "standard"
+      ]
+    },
+    {
+      "schema": "https://action-atoms.com/schemas/atom-v1.json",
+      "type": "github",
+      "id": "action-atoms/github/actions-setup-node-v4",
+      "version": "1.0.0",
+      "name": "actions/setup-node@v4",
+      "description": "Set up Node.js with optional npm/pnpm cache. Used by all Astro web build jobs.",
+      "action_ref": "actions/setup-node@v4",
+      "inputs": {
+        "node-version": "22",
+        "cache": "npm"
+      },
+      "tags": [
+        "node",
+        "npm",
+        "setup",
+        "ci"
+      ]
+    },
+    {
+      "schema": "https://action-atoms.com/schemas/atom-v1.json",
+      "type": "github",
+      "id": "action-atoms/github/cloudflare-wrangler-action-v3",
+      "version": "1.0.0",
+      "name": "cloudflare/wrangler-action@v3",
+      "description": "Deploy to Cloudflare Pages via Wrangler. Used by all *-atoms deploy workflows.",
+      "action_ref": "cloudflare/wrangler-action@v3",
+      "inputs": {},
+      "tags": [
+        "cloudflare",
+        "pages",
+        "deploy",
+        "wrangler",
+        "ci"
+      ]
+    },
+    {
+      "schema": "https://action-atoms.com/schemas/atom-v1.json",
+      "type": "github",
+      "id": "action-atoms/github/pnpm-action-setup-v4",
+      "version": "1.0.0",
+      "name": "pnpm/action-setup@v4",
+      "description": "Install pnpm package manager. Required for repos using pnpm instead of npm.",
+      "action_ref": "pnpm/action-setup@v4",
+      "inputs": {
+        "version": "10"
+      },
+      "tags": [
+        "pnpm",
+        "setup",
+        "ci",
+        "package-manager"
+      ]
+    },
+    {
+      "schema": "https://action-atoms.com/schemas/atom-v1.json",
+      "type": "github",
+      "id": "action-atoms/github/trufflesecurity-trufflehog-v3",
+      "version": "1.0.0",
+      "name": "trufflesecurity/trufflehog@v3.95.3",
+      "description": "Secret scanning using TruffleHog. Detects leaked credentials in git history.",
+      "action_ref": "trufflesecurity/trufflehog@v3.95.3",
+      "inputs": {
+        "extra_args": "--only-verified"
+      },
+      "tags": [
+        "security",
+        "secrets",
+        "scanning",
+        "ci"
+      ]
+    }
+  ],
   "compositions": [],
   "rules": []
 }

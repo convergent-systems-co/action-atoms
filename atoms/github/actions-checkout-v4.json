@@ -1,0 +1,13 @@
+{
+  "schema": "https://action-atoms.com/schemas/atom-v1.json",
+  "type": "github",
+  "id": "action-atoms/github/actions-checkout-v4",
+  "version": "1.0.0",
+  "name": "actions/checkout@v4",
+  "description": "Check out a repository at a given SHA. Standard first step for all CI jobs.",
+  "action_ref": "actions/checkout@v4",
+  "inputs": {
+    "fetch-depth": 1
+  },
+  "tags": ["checkout", "git", "ci", "standard"]
+}

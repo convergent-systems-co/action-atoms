@@ -1,0 +1,13 @@
+{
+  "schema": "https://action-atoms.com/schemas/atom-v1.json",
+  "type": "github",
+  "id": "action-atoms/github/pnpm-action-setup-v4",
+  "version": "1.0.0",
+  "name": "pnpm/action-setup@v4",
+  "description": "Install pnpm package manager. Required for repos using pnpm instead of npm.",
+  "action_ref": "pnpm/action-setup@v4",
+  "inputs": {
+    "version": "10"
+  },
+  "tags": ["pnpm", "setup", "ci", "package-manager"]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "https://action-atoms.com/schemas/atom-v1.json",
+  "type": "github",
+  "id": "action-atoms/github/actions-setup-node-v4",
+  "version": "1.0.0",
+  "name": "actions/setup-node@v4",
+  "description": "Set up Node.js with optional npm/pnpm cache. Used by all Astro web build jobs.",
+  "action_ref": "actions/setup-node@v4",
+  "inputs": {
+    "node-version": "22",
+    "cache": "npm"
+  },
+  "tags": ["node", "npm", "setup", "ci"]
+}
