@@ -1,17 +1,8 @@
 {
+  "catalog": "action-atoms",
   "version": "0.1.0",
-  "atoms": [
-    {
-      "id": "cs-page-deployment",
-      "type": "github",
-      "version": "1.0.0",
-      "name": "Convergent Systems — Pages Deployment",
-      "description": "Build a Node/Astro site and deploy it to Cloudflare Pages via wrangler.",
-      "subtype": "composite",
-      "canonical_url": "https://action-atoms.com/github/composite/cs-page-deployment@1.0.0",
-      "gha_uses": "convergent-systems-co/action-atoms/composite/cs-page-deployment@v1.0.0"
-    }
-  ],
+  "built_at": "2026-05-26T15:41:23+00:00",
+  "atoms": [],
   "compositions": [],
   "rules": []
 }
