@@ -1,0 +1,40 @@
+name: Create DNS CNAME
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-cname:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create CNAME record via Cloudflare API
+        env:
+          CLOUDFLARE_DNS_TOKEN: ${{ secrets.CLOUDFLARE_DNS_TOKEN }}
+        run: |
+          ZONE_ID="a3b1d66afeb88714338d43942c3a825a"
+          DOMAIN="action-atoms.com"
+          TARGET="action-atoms.pages.dev"
+
+          echo "Creating CNAME: $DOMAIN -> $TARGET"
+
+          RESULT=$(curl -s -X POST \
+            "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records" \
+            -H "Authorization: Bearer $CLOUDFLARE_DNS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"type\":\"CNAME\",\"name\":\"@\",\"content\":\"$TARGET\",\"proxied\":true,\"ttl\":1}")
+
+          echo "$RESULT" | python3 -c "
+          import json,sys
+          d=json.loads(sys.stdin.read())
+          if d.get('success'):
+              print('Created:', d['result']['name'], '->', d['result']['content'])
+          else:
+              errs=d.get('errors',[{}])
+              code=errs[0].get('code','?')
+              msg=errs[0].get('message','?')
+              if code == 81053:
+                  print('Record already exists (OK)')
+              else:
+                  print(f'Error {code}: {msg}')
+                  exit(1)
+          "
