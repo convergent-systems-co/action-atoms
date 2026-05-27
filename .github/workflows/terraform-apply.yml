@@ -45,7 +45,7 @@ jobs:
           tofu import cloudflare_pages_project.site "${ACCOUNT_ID}/${PROJECT_NAME}" || true
 
       - name: tofu plan
-        run: tofu -chdir=infra/terraform/envs/${{ github.event.inputs.env }} plan -input=false -out=tfplan
+        run: tofu -chdir=infra/terraform/envs/${{ github.event.inputs.env }} plan -input=false -target=cloudflare_record.apex -out=tfplan
 
       - name: tofu apply
         run: tofu -chdir=infra/terraform/envs/${{ github.event.inputs.env }} apply -input=false tfplan
