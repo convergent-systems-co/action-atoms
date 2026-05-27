@@ -37,6 +37,13 @@ jobs:
       - name: tofu init
         run: tofu -chdir=infra/terraform/envs/${{ github.event.inputs.env }} init -input=false
 
+      - name: import pages project (idempotent)
+        working-directory: infra/terraform/envs/${{ github.event.inputs.env }}
+        run: |
+          ACCOUNT_ID=$(grep 'account_id' terraform.tfvars | sed 's/.*= *"\(.*\)"/\1/')
+          PROJECT_NAME=$(grep 'project_name' terraform.tfvars | sed 's/.*= *"\(.*\)"/\1/')
+          tofu import cloudflare_pages_project.site "${ACCOUNT_ID}/${PROJECT_NAME}" || true
+
       - name: tofu plan
         run: tofu -chdir=infra/terraform/envs/${{ github.event.inputs.env }} plan -input=false -out=tfplan
 
